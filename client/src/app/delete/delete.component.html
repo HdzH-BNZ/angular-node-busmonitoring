@@ -1,0 +1,29 @@
+<form #f="ngForm" [formGroup]="arretService.form" class="normal-form" novalidate>
+    <mat-card class="arrets-card">
+
+        <mat-card-header>
+            <mat-card-title>Vous avez sélectionné un arrêt de bus déjà évalué</mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content>
+            <div class="row">
+                <div class="col">
+                    <mat-form-field class="full-width">
+                        <input formControlName="nom_arret" [(ngModel)]="arretBus.nom_arret" matInput placeholder="Nom de l'arrêt">
+                    </mat-form-field>
+                </div>
+                <div class="col">
+                    <mat-form-field class="full-width">
+                        <input formControlName="nom_exploit" [(ngModel)]="arretBus.nom_exploit" matInput placeholder="Nom des exploitants">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div id="myMap"></div>
+                </div>
+            </div>
+        </mat-card-content>
+
+    </mat-card>
+</form>

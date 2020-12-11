@@ -1,0 +1,153 @@
+<form #f="ngForm" [formGroup]="arretService.form" class="normal-form" novalidate (ngSubmit)="addNewArret(f)">
+    <mat-card class="arrets-card">
+
+        <mat-card-header>
+            <mat-card-title>Evaluation de l'état des arrêts de bus</mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content>
+            <div class="row">
+                <div class="col">
+                    <mat-form-field class="full-width">
+                        <input formControlName="nom_ligne" [(ngModel)]="dataNewArret.nom_ligne" matInput placeholder="Nom des lignes disponibles">
+                    </mat-form-field>
+                </div>
+                <div class="col">
+                    <mat-form-field class="full-width">
+                        <input formControlName="nom_exploit" [(ngModel)]="dataNewArret.nom_exploit" matInput placeholder="Nom des exploitants">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <mat-form-field class="full-width">
+                        <input formControlName="nom_arret" [(ngModel)]="dataNewArret.nom_arret" matInput placeholder="Nom de l'arrêt">
+                    </mat-form-field>
+                </div>
+                <div class="col">
+                    <mat-form-field class="full-width">
+                        <mat-select class="full-width" [(ngModel)]="dataNewArret.etat_arret" formControlName="etat_arret" placeholder="Etat de l'arrêt">
+                            <mat-option *ngFor="let etat of listeEtats" [value]="etat">
+                                {{ etat }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <mat-form-field class="full-width">
+                        <input formControlName="nom_commune" [(ngModel)]="dataNewArret.nom_commune" matInput placeholder="Nom de la commune">
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <mat-form-field class="full-width">
+                        <mat-select formControlName="acces_pmr" [(ngModel)]="dataNewArret.acces_pmr" placeholder="Accès aux personnes à mobilité réduite">
+                            <mat-option [value]="true">Oui</mat-option>
+                            <mat-option [value]="false">Non</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col">
+                    <mat-form-field class="full-width">
+                        <mat-select formControlName="marquage_au_sol" [(ngModel)]="dataNewArret.marquage_au_sol" placeholder="Présence d'un marquage au sol">
+                            <mat-option [value]="true">Oui</mat-option>
+                            <mat-option [value]="false">Non</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col">
+                    <mat-form-field class="full-width">
+                        <mat-select class="full-width" formControlName="etat_marquage" [(ngModel)]="dataNewArret.etat_marquage" placeholder="Etat du marquage au sol">
+                            <mat-option *ngFor="let marquage of etatMarquage" [value]="marquage">
+                                {{ marquage }}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <mat-form-field class="full-width">
+                        <mat-select formControlName="poubelle" [(ngModel)]="dataNewArret.poubelle" placeholder="Présence d'une poubelle">
+                            <mat-option [value]="true">Oui</mat-option>
+                            <mat-option [value]="false">Non</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col">
+                    <mat-form-field class="full-width">
+                        <mat-select formControlName="banc" [(ngModel)]="dataNewArret.banc" placeholder="Présence d'un banc">
+                            <mat-option [value]="true">Oui</mat-option>
+                            <mat-option [value]="false">Non</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col">
+                    <mat-form-field class="full-width">
+                        <mat-select formControlName="carte_trajets" [(ngModel)]="dataNewArret.carte_trajets" placeholder="Carte des trajets">
+                            <mat-option [value]="true">Oui</mat-option>
+                            <mat-option [value]="false">Non</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col">
+                    <mat-form-field class="full-width">
+                        <mat-select formControlName="horaires" [(ngModel)]="dataNewArret.horaires" placeholder="Horaires disponibles">
+                            <mat-option [value]="true">Oui</mat-option>
+                            <mat-option [value]="false">Non</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div class="col">
+                    <mat-form-field class="full-width">
+                        <mat-select formControlName="toit" [(ngModel)]="dataNewArret.toit" placeholder="Présence d'un toit">
+                            <mat-option [value]="true">Oui</mat-option>
+                            <mat-option [value]="false">Non</mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <mat-form-field class="full-width">
+                        <textarea formControlName="commentaires" [(ngModel)]="dataNewArret.commentaires" matInput placeholder="Commentaires supplémentaires"></textarea>
+                    </mat-form-field>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col">
+                    <div id="myMap"></div>
+                </div>
+            </div>
+            <br>
+            <div class="row">
+                <div class="col">
+                    <mat-form-field class="full-width">
+                        <input type="number" value="" formControlName="lat" id="latitude" [(ngModel)]="dataNewArret.lat" matInput placeholder="Latitude">
+                        <mat-hint>indiquez l'arrêt sur la carte</mat-hint>
+                    </mat-form-field>
+                </div>
+                <div class="col">
+                    <mat-form-field class="full-width">
+                        <input type="number" value="" formControlName="lng" id="longitude" [(ngModel)]="dataNewArret.lng" matInput placeholder="Longitude">
+                        <mat-hint>indiquez l'arrêt sur la carte</mat-hint>
+                    </mat-form-field>
+                </div>
+                <div class="col">
+                    <mat-form-field class="full-width">
+                        <input formControlName="date_eval" [(ngModel)]="dataNewArret.date_eval" matInput placeholder="Date de l'évaluation de l'arrêt">
+                        <mat-hint>YYYY-MM-DD</mat-hint>
+                    </mat-form-field>
+                </div>
+            </div>
+        </mat-card-content>
+
+
+        <mat-card-actions>
+            <button mat-raised-button color="primary" type="submit">Chargez</button>
+        </mat-card-actions>
+    </mat-card>
+</form>
